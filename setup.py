@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
-import sys
+from typing import List
 
 
 hyphen_e_dot = "-e ."
-def get_requirements(filepath:str)->list[str]:
+def get_requirements(filepath:str)->List[str]:
     requirements=[]
     with open(filepath, 'rb') as file_obj:
         requirements=file_obj.readlines()

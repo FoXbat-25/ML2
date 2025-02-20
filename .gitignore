@@ -1,2 +1,5 @@
 venv
 logs
+__init__
+MongoDBcredentials.txt
+.env

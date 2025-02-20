@@ -2,4 +2,8 @@ pandas
 numpy
 seabor
 flask
+pymongo[srv]==3.11
+python-decouple
+certifi
+
 -e .
