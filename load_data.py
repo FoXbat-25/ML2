@@ -17,12 +17,9 @@ from networkSecurity.components.logger import logging
 
 class networkDataExtract():
     def __init__(self):
-        try:
-            pass
-        except Exception as e:
-            raise customException(e, sys)
+        pass
 
-    def csv_to_json(self, file_path):
+    def csv_to_json(self, file_path):  #file_path to file to be converted to json
         try:
             data=pd.read_csv(file_path)
             data.reset_index(drop=True, inplace=True)

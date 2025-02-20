@@ -1,9 +1,10 @@
 pandas
 numpy
-seabor
+seaborn
 flask
 pymongo[srv]==3.11
 python-decouple
 certifi
+scikit-learn
 
 -e .
