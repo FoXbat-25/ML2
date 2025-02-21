@@ -2,7 +2,6 @@ import os
 import sys
 from datetime import datetime
 from networkSecurity.components.exception import customException
-#from logger import logging
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
