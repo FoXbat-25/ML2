@@ -14,6 +14,9 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='FoXbat-25', repo_name='ML2', mlflow=True)
+
 class ModelTrainer:
     def __init__(self, model_trainer_confg:ModelTrainerConfg, data_transformation_artifact:DataTransformationArtifact):
         try:
