@@ -7,5 +7,6 @@ python-decouple
 certifi
 scikit-learn
 pyaml
-
+catboost
+xgboost
 -e .
