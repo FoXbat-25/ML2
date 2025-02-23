@@ -1,7 +1,8 @@
 from networkSecurity.components.data_ingestion import DataIngestion
 from networkSecurity.components.data_validation import DataValidation
+from networkSecurity.components.data_transformation import DataTransformation
 from networkSecurity.components.exception import customException
-from networkSecurity.components.config import DataIngestionConfg, TrainingPipelineConfg, DataValidationConfg
+from networkSecurity.components.config import DataIngestionConfg, TrainingPipelineConfg, DataValidationConfg, DataTransformationConfg
 import sys
 
 if __name__=='__main__':
@@ -17,6 +18,10 @@ if __name__=='__main__':
         dataValidationArtifact=dataValidation.initiate_data_validation()
         print(dataValidationArtifact)
         
-
+        dataTransConfg=DataTransformationConfg(training_pipeline_confg)
+        dataTransformation=DataTransformation(dataValidationArtifact, dataTransConfg)
+        dataTransformationArtifact=dataTransformation.initiate_data_transformation()
+        print(dataTransformationArtifact)
+        
     except Exception as e:
         raise customException(e,sys)

@@ -30,4 +30,11 @@ class DataValidationConfg:
         self.invalid_train_file_path:str=os.path.join(self.invalid_data_dir, constants.TRAIN_FILE) #Artifacts/data_validation/invalid/Train.csv
         self.invalid_test_file_path:str=os.path.join(self.invalid_data_dir, constants.TEST_FILE) #Artifacts/data_validation/invaled/Test.csv
         self.drift_report_path:str=os.path.join(self.data_validation_dir, constants.DRIFT_DATA_DIR, constants.DRIFT_REPORT_NAME)  #Artifacts/data_validation/drift_report/drift_report.yaml.
-         
+
+class DataTransformationConfg:
+    def __init__(self, training_pipeline_confg:TrainingPipelineConfg):
+        self.data_transformation_dir:str=os.path.join(training_pipeline_confg.artifact_dir, constants.DATA_TRANSFORMATION_DIR)
+        self.transformed_train_file_path=os.path.join(self.data_transformation_dir, constants.TRANSFORMED_DATA_DIR, constants.TRAIN_FILE.replace("csv", "npy"))
+        self.transformed_test_file_path=os.path.join(self.data_transformation_dir, constants.TRANSFORMED_DATA_DIR, constants.TEST_FILE.replace("csv", "npy"))
+        self.transformed_obj_file_path=os.path.join(self.data_transformation_dir, constants.TRANSFORMED_OBJECT_DIR, constants.PREPROCESSING_OBJ_FILE_NAME)
+        

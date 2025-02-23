@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 import pandas as pd
 
 TARGET_COLUMN="Result"
@@ -23,3 +24,16 @@ DRIFT_DATA_DIR="drift_report"
 DRIFT_REPORT_NAME="drift_report.yaml"
 
 SCHEMA_FILE_PATH=os.path.join("data_schema", "schema.yaml")
+
+DATA_TRANSFORMATION_DIR="data_transformation"
+DATA_TRANSFORMED_TRAIN_FILE=""
+DATA_TRANSFORMED_TEST_FILE=""
+TRANSFORMED_DATA_DIR="transformed"
+TRANSFORMED_OBJECT_DIR="transformed_object"
+DATA_TRANSFORMATION_IMPUTER_PARAMS:dict={
+    "missing_values":np.nan,
+    "n_neighbors":3,
+    "weights":"uniform"
+}
+
+PREPROCESSING_OBJ_FILE_NAME="Preprocessing.pkl"
