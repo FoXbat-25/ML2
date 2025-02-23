@@ -4,3 +4,4 @@ __init__
 MongoDBcredentials.txt
 .env
 __pycache__
+mlruns/

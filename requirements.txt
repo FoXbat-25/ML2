@@ -9,4 +9,5 @@ scikit-learn
 pyaml
 catboost
 xgboost
+mlflow
 -e .
