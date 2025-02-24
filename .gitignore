@@ -5,3 +5,4 @@ MongoDBcredentials.txt
 .env
 __pycache__
 mlruns/
+valid_data
