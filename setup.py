@@ -5,7 +5,7 @@ from typing import List
 hyphen_e_dot = "-e ."
 def get_requirements(filepath:str)->List[str]:
     requirements=[]
-    with open(filepath, 'rb') as file_obj:
+    with open(filepath, 'r') as file_obj:
         requirements=file_obj.readlines()
         requirements=[req.replace("\n", "") for req in requirements]
 
