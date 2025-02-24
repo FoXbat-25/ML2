@@ -1,12 +1,17 @@
+# Use Python 3.12 Slim as the base image
 FROM python:3.12-slim
+
+# Set working directory inside the container
 WORKDIR /app
+
+# Copy application files to the container
 COPY . /app
 
-RUN apt update -y&&apt  -y curl unzip
+# Update package lists and install dependencies
+RUN apt-get update && apt-get install -y curl unzip google-cloud-sdk
 
-# Install Google Cloud SDK (includes gsutil for GCP storage)
-RUN curl https://sdk.cloud.google.com | bash && \
-    exec -l $SHELL && \
-    gcloud auth login
-RUN apt-get update && pip install -r requirements.txt
-CMD ['python', 'app.py']
+# Install Python dependencies
+RUN pip install -r requirements.txt
+
+# Run the application
+CMD ["python", "app.py"]
