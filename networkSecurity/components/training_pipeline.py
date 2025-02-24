@@ -7,10 +7,12 @@ from networkSecurity.components.data_validation import DataValidation
 from networkSecurity.components.model_trainer import ModelTrainer
 from networkSecurity.components.config import TrainingPipelineConfg,DataIngestionConfg, DataTransformationConfg, DataValidationConfg, ModelTrainerConfg
 from networkSecurity.components.artifiact_config import DataIngestionArtifact, DataTransformationArtifact, DataValidationArtifact, ModelTrainerArtifact
+from networkSecurity.cloud.gs_sync import gssync
 
 class TrainingPipeline:
     def __init__(self):
-        self.training_pipeline_confg=TrainingPipelineConfg() 
+        self.training_pipeline_confg=TrainingPipelineConfg()
+        self.gssync=gssync() 
 
     def start_data_ingestion(self):
         try:
@@ -49,12 +51,30 @@ class TrainingPipeline:
         except Exception as e:
             raise customException (e,sys)
     
+    def sync_artifact_to_gcp(self):
+        try:
+            gcp_bucket_url=f"gs://ml2bucket-1/artifact/{self.training_pipeline_confg.timestamp}"
+            self.gssync.sync_to_gcp(folder=self.training_pipeline_confg.artifact_dir, gcp_bucket_url=gcp_bucket_url)
+        except Exception as e:
+            raise customException(e,sys)
+
+    def sync_model_to_gcp(self):
+        try:
+            gcp_bucket_url=f"gs://ml2bucket-1/final_models/{self.training_pipeline_confg.timestamp}"
+            self.gssync.sync_to_gcp(folder=self.training_pipeline_confg.model_dir, gcp_bucket_url=gcp_bucket_url)    
+        
+        except Exception as e:
+            raise customException(e,sys)
+
     def run_pipeline(self):
         try:
             data_ingestion_artifact=self.start_data_ingestion()
             data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
             data_transformation_artifact=self.start_data_transformation(data_validation_artifact=data_validation_artifact)
             model_trainer_artifact=self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
+            self.sync_artifact_to_gcp() 
+            self.sync_model_to_gcp()
             return model_trainer_artifact
         except Exception as e:
-            raise customException(e,sys)
+            raise customException(e,sys)    
+    

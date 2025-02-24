@@ -6,3 +6,5 @@ MongoDBcredentials.txt
 __pycache__
 mlruns/
 valid_data
+avian-altar-417409-44221016515b.json
+google_auth.py

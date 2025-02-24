@@ -8,6 +8,7 @@ class TrainingPipelineConfg:
         self.pipeline_name=constants.PIPELINE_NAME
         self.artifact_dir=constants.ARTIFACT_DIR
         self.artifact_name=os.path.join(self.artifact_dir, timestamp)
+        self.model_dir=os.path.join("final_models")
         self.timestamp:str=timestamp
 
 class DataIngestionConfg:
