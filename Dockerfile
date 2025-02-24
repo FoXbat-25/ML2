@@ -1,6 +1,6 @@
 FROM python:3.12-slim-buster
 WORKDIR /app
-COPY ./app
+COPY . /app
 
 RUN apt update -y&&apt  -y curl unzip
 
