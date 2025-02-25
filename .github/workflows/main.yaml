@@ -73,11 +73,16 @@ jobs:
           instance_name: ${{ secrets.GCP_INSTANCE_NAME }}
           zone: ${{ secrets.GCP_ZONE }}
           ssh_private_key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
-          ssh_user: ${{ secrets.GCP_SSH_USER }}    
+          ssh_user: ${{ secrets.GCP_SSH_USER }}
+          command: "hostname"   
 
       - name: Pull docker image
         run: |
           docker pull us-central1-docker.pkg.dev/avian-altar-417409/my-repo/my-image:latest
+
+      - name: Stop and remove existing container (if running)
+        run: |
+          docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm networksecurity || echo "No existing container to remove"
 
       - name: Run docker images
         run: |
