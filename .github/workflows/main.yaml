@@ -75,8 +75,10 @@ jobs:
           ssh_private_key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           user: ${{ secrets.GCP_SSH_USER }}
           command: "hostname"   
+      
       - name: Authenticate Docker for Google Artifact Registry
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
+      
       - name: Pull docker image
         run: |
           docker pull us-central1-docker.pkg.dev/avian-altar-417409/my-repo/my-image:latest
