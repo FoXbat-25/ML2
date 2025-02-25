@@ -86,9 +86,11 @@ jobs:
           docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm networksecurity || echo "No existing container to remove"
 
       - name: Run docker images
+        env:
+          GCP_ACCESS_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           docker run -d -p 8080:8080 --ipc="host" --name=networksecurity \
-          -e GCP_ACCESS_KEY=${{secrets.GCP_SA_KEY}} \
+          -e GCP_ACCESS_KEY="$GCP_ACCESS_KEY" \
           us-central1-docker.pkg.dev/avian-altar-417409/my-repo/my-image:latest
       
       - name: Clean previous images and containers
