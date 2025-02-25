@@ -73,7 +73,7 @@ jobs:
           instance_name: ${{ secrets.GCP_INSTANCE_NAME }}
           zone: ${{ secrets.GCP_ZONE }}
           ssh_private_key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
-          ssh_user: ${{ secrets.GCP_SSH_USER }}
+          user: ${{ secrets.GCP_SSH_USER }}
           command: "hostname"   
 
       - name: Pull docker image
