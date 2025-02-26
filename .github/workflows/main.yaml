@@ -94,7 +94,7 @@ jobs:
         env:
           GCP_ACCESS_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
-          docker run -d -p 8080:8080 --ipc="host" --name=networksecurity \
+          docker run -d -p 8000:8000 --ipc="host" --name=networksecurity \
           -e GCP_ACCESS_KEY="$GCP_ACCESS_KEY" \
           us-central1-docker.pkg.dev/avian-altar-417409/my-repo/my-image:latest
       
